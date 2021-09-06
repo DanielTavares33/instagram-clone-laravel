@@ -35,4 +35,4 @@ Route::get('/p/create', [PostsController::class, 'create']);
 /* 
     * Store the post content
 */
-Route::get('/p', [PostsController::class, 'store']);
+Route::post('/p', [PostsController::class, 'store']);
