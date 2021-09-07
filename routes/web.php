@@ -32,7 +32,14 @@ Route::get('/profile/{user}', [ProfilesController::class, 'index'])->name('profi
 */
 Route::get('/p/create', [PostsController::class, 'create']);
 
-/* 
-    * Store the post content
-*/
+
+
+// Store the post content
 Route::post('/p', [PostsController::class, 'store']);
+
+// Show the respective image clicked on the user profile
+Route::get('/p/{post}', [PostsController::class, 'show']);
+
+Route::get('/profile/{user}/edit', [ProfilesController::class, 'edit']);
+
+Route::patch('/profile/{user}', [ProfilesController::class, 'update']);

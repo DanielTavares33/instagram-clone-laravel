@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class PostsController extends Controller
 {
@@ -27,11 +28,20 @@ class PostsController extends Controller
 
         $imagePath = request('image')->store('uploads', 'public');
 
+        // This is to make all the images the same size.
+        // Using an external lib called intervention\image
+        $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
+        $image->save();
+
         auth()->user()->posts()->create([
             'caption' => $data['caption'],
             'image' => $imagePath
         ]);
 
         return redirect('/profile/' . auth()->user()->id);
+    }
+
+    public function show(Post $post) {
+        return view('posts.show', compact('post'));
     }
 }
