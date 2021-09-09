@@ -21,18 +21,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-
-/* 
-    * Go to a user profile
-*/
-Route::get('/profile/{user}', [ProfilesController::class, 'index'])->name('profile.show');
-
 /*
    * Go to creation of a post route
 */
 Route::get('/p/create', [PostsController::class, 'create']);
-
-
 
 // Store the post content
 Route::post('/p', [PostsController::class, 'store']);
@@ -40,6 +32,13 @@ Route::post('/p', [PostsController::class, 'store']);
 // Show the respective image clicked on the user profile
 Route::get('/p/{post}', [PostsController::class, 'show']);
 
+/* 
+    * Go to a user profile
+*/
+Route::get('/profile/{user}', [ProfilesController::class, 'index'])->name('profile.show');
+
+// Show respective user profile edit page
 Route::get('/profile/{user}/edit', [ProfilesController::class, 'edit']);
 
+// Action route for when we update the user profile 
 Route::patch('/profile/{user}', [ProfilesController::class, 'update']);

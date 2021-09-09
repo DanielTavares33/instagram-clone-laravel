@@ -30,7 +30,7 @@
                     <label for="name" class="col-md-4 col-form-label">Post Image</label>
                     <input type="file" class="form-control-file" id="image" name="image" >
 
-                    @error('image')
+                     @error('image')
                             <strong>{{ $message }}</strong>
                     @enderror
                 </div>

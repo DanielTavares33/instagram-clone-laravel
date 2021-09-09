@@ -3,12 +3,16 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-3 p-5"><img src="/img/profile_photo.jpg" class="rounded-circle"></div>
+        <div class="col-3 p-5"><img src="{{ $user->profile->profileImage() }}" class="rounded-circle w-100"></div>
         <div class="col-9 pt-5">
             <div class="d-flex justify-content-between align-items-baseline">
                 <h1>{{$user->username}}</h1>
-                <a href="/p/create">Add new Post</a>
-                <a href="/profile/{{ $user->id }}/edit">Edit</a>
+                 @can('update', $user->profile)
+                    <a href="/p/create">Add new Post</a>
+                @endcan
+                @can('update', $user->profile)
+                    <a href="/profile/{{ $user->id }}/edit">Edit</a>
+                @endcan
             </div>
             <div class="d-flex">
                 <div class="pr-5"><strong>{{ $user->posts->count() }}</strong> publicações</div>
