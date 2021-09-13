@@ -3,6 +3,7 @@
 use App\Http\Controllers\PostsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfilesController;
+use App\Http\Controllers\FollowsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+
 
 /*
    * Go to creation of a post route
@@ -42,3 +44,7 @@ Route::get('/profile/{user}/edit', [ProfilesController::class, 'edit']);
 
 // Action route for when we update the user profile 
 Route::patch('/profile/{user}', [ProfilesController::class, 'update']);
+
+
+Route::post('/follow/{user}', [FollowsController::class, 'store']);
+
