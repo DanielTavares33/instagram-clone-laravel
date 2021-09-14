@@ -16,28 +16,19 @@ use App\Http\Controllers\FollowsController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
+Route::get('/', [PostsController::class, 'index']);
 
-/*
-   * Go to creation of a post route
-*/
 Route::get('/p/create', [PostsController::class, 'create']);
-
-// Store the post content
-Route::post('/p', [PostsController::class, 'store']);
 
 // Show the respective image clicked on the user profile
 Route::get('/p/{post}', [PostsController::class, 'show']);
 
-/* 
-    * Go to a user profile
-*/
 Route::get('/profile/{user}', [ProfilesController::class, 'index'])->name('profile.show');
+
+// Store the post content
+Route::post('/p', [PostsController::class, 'store']);
 
 // Show respective user profile edit page
 Route::get('/profile/{user}/edit', [ProfilesController::class, 'edit']);
