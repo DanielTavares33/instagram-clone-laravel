@@ -4,6 +4,7 @@ use App\Http\Controllers\PostsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\FollowsController;
+use App\Mail\NewUserWelcomeMail;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,10 @@ use App\Http\Controllers\FollowsController;
 */
 
 Auth::routes();
+
+Route::get('/email', function () {
+    return new NewUserWelcomeMail();
+});
 
 Route::get('/', [PostsController::class, 'index']);
 
